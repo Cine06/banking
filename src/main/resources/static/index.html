@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Nevaeh Digital Bank — Simple, secure, and easy banking. Manage your account, check your balance, and keep track of your transactions in one place." />
+  <title>Nevaeh — Simple, Secure, and Easy Banking</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              200: '#DDD6FE',
+              300: '#C4B5FD',
+              400: '#A78BFA',
+              500: '#8B5CF6',
+              600: '#6355EC',
+              700: '#5344DC',
+              800: '#4334C4',
+              900: '#3225A6',
+            },
+            finvest: {
+              bg: '#EBE8FD',
+              bgLight: '#F3F0FF',
+              purple: '#6355EC',
+              purpleDark: '#4D3DF5',
+              card: '#FFFFFF',
+              darkBg: '#0B0819',
+              darkCard: '#141028',
+            }
+          },
+          boxShadow: {
+            'finvest-card': '0 25px 60px -15px rgba(99, 85, 236, 0.22), 0 0 15px rgba(99, 85, 236, 0.08)',
+            'finvest-pill': '0 8px 25px -4px rgba(99, 85, 236, 0.4)',
+            'glow-purple': '0 0 40px rgba(99, 85, 236, 0.35)',
+            'glass': '0 20px 50px rgba(0, 0, 0, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Style CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%236355EC'/><path d='M30 65 L50 35 L70 65 M40 52 L60 52' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+</head>
+
+<body
+  class="bg-gradient-to-b from-[#EAE6FD] via-[#F4F1FE] to-[#FAF8FF] dark:from-[#0B0819] dark:via-[#100C22] dark:to-[#090714] text-slate-900 dark:text-slate-100 transition-colors duration-300 antialiased font-sans overflow-x-hidden min-h-screen">
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-[9999] flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Dynamic Component Mount Points -->
+  <div id="appRoot">
+    <!-- 1. Public Landing Page -->
+    <div data-include="/templates/landing.html"></div>
+
+    <!-- 2. Glassmorphic Auth Modal (Login / Register) -->
+    <div data-include="/templates/auth-modal.html"></div>
+
+    <!-- 3. Banking Dashboard View -->
+    <div data-include="/templates/dashboard.html"></div>
+
+    <!-- 4. Action Modals -->
+    <div data-include="/templates/deposit-modal.html"></div>
+    <div data-include="/templates/transfer-modal.html"></div>
+    <div data-include="/templates/withdraw-modal.html"></div>
+    <div data-include="/templates/accounts-modal.html"></div>
+    <div data-include="/templates/change-password-modal.html"></div>
+  </div>
+
+  <!-- Application Javascript Logic -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+
+</html>

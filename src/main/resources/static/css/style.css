@@ -1,0 +1,158 @@
+/* ============================================================
+   NEVAEH DIGITAL BANKING STYLE
+   ============================================================ */
+
+/* Root Custom Properties */
+:root {
+  --primary-purple: #6355EC;
+  --primary-purple-hover: #5344DC;
+  --brand-gradient: linear-gradient(135deg, #6355EC 0%, #5344DC 50%, #4334C4 100%);
+}
+
+/* Glassmorphism Authentication Card Styling */
+.glass-auth-card {
+  background: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 40px rgba(108, 92, 231, 0.3) !important;
+}
+
+/* Dark mode glass card */
+.dark .glass-auth-card {
+  background: rgba(26, 20, 48, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Micro-animations */
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 3s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 92, 231, 0.6);
+}
+
+/* Masked balance and account text */
+.masked-text {
+  letter-spacing: 0.2em;
+  filter: blur(0.5px);
+}
+
+/* Toast Notifications */
+.toast-card {
+  pointer-events: auto;
+  min-width: 300px;
+  max-width: 400px;
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.2s ease;
+}
+
+.toast-card.toast-success {
+  background: #064e3b;
+  color: #ecfdf5;
+  border: 1px solid #059669;
+}
+
+.toast-card.toast-error {
+  background: #7f1d1d;
+  color: #fef2f2;
+  border: 1px solid #dc2626;
+}
+
+.toast-card.toast-info {
+  background: #1e1b4b;
+  color: #e0e7ff;
+  border: 1px solid #6366f1;
+}
+
+.toast-card.hiding {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Smooth transitions between views */
+.view-section {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Button Loading state */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Popover & Dropdown animations */
+#userProfileDropdown,
+#txnDateDropdownMenu {
+  animation: dropdownFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top right;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

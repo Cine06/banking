@@ -1,0 +1,47 @@
+<!-- ============================================================
+     WITHDRAW MODAL
+     ============================================================ -->
+<div id="withdrawModal"
+  class="action-modal fixed inset-0 z-[120] flex items-center justify-center p-4 hidden opacity-0 transition-all">
+  <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="app.closeModal('withdrawModal')"></div>
+  <div
+    class="relative w-full max-w-md bg-white dark:bg-finvest-darkCard rounded-[28px] p-7 shadow-2xl border border-purple-100 dark:border-purple-900/50 z-10">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <span
+          class="w-8 h-8 rounded-xl bg-purple-50 text-finvest-purple flex items-center justify-center text-sm font-bold">↙</span>
+        Withdraw Cash
+      </h3>
+      <button onclick="app.closeModal('withdrawModal')"
+        class="text-slate-400 hover:text-slate-600 text-base">✕</button>
+    </div>
+
+    <form id="modalWithdrawForm" class="space-y-4">
+      <div>
+        <label
+          class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Amount
+          (₱, Min. 100)</label>
+        <input type="number" id="modalWithdrawAmount" min="100" step="any"
+          class="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-purple-950/50 border border-slate-200 dark:border-purple-800 text-lg font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-finvest-purple"
+          placeholder="₱100.00" required />
+        <div class="flex gap-2 mt-2.5">
+          <button type="button"
+            class="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950 text-finvest-purple font-bold text-xs hover:bg-purple-100 transition"
+            onclick="document.getElementById('modalWithdrawAmount').value=500">₱500</button>
+          <button type="button"
+            class="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950 text-finvest-purple font-bold text-xs hover:bg-purple-100 transition"
+            onclick="document.getElementById('modalWithdrawAmount').value=1000">₱1,000</button>
+          <button type="button"
+            class="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950 text-finvest-purple font-bold text-xs hover:bg-purple-100 transition"
+            onclick="document.getElementById('modalWithdrawAmount').value=5000">₱5,000</button>
+        </div>
+        <div id="modalWithdrawError" class="text-xs text-rose-500 font-medium mt-1.5 hidden"></div>
+      </div>
+
+      <button type="submit" id="btnModalWithdrawSubmit"
+        class="w-full py-3.5 rounded-full bg-finvest-purple hover:bg-finvest-purpleDark active:scale-95 text-white font-bold text-sm shadow-finvest-pill transition">
+        Confirm Withdrawal
+      </button>
+    </form>
+  </div>
+</div>
