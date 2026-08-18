@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @SuperBuilder
 public class Account extends BaseEntity {
 
-    @Column(name = "account_number", nullable = false, unique = true)
+    @Column(name = "account_number", nullable = false, unique = true, length = 12)
     private String accountNumber;
 
     @Column(nullable = false)

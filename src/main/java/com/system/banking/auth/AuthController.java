@@ -1,7 +1,8 @@
 package com.system.banking.auth;
 
-import com.system.banking.user.User;
-import com.system.banking.user.UserRepository;
+import com.system.banking.common.ApiResponse;
+import com.system.banking.exception.InvalidCredentialsException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,24 +12,45 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-    private final UserRepository userRepository;
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequestDTO request) {
+    public ApiResponse<Object> register(@Valid @RequestBody RegisterRequestDTO request) {
 
         authService.register(request);
 
-        return "User Registered Successfully";
+        return ApiResponse.builder()
+                .success(true)
+                .message("User Registered Successfully")
+                .data(null)
+                .build();
     }
-    @GetMapping("/login")
-    public void login(LoginRequestDTO request) {
 
-        User user = userRepository.findByEmailOrUsername(request.getUsernameOrEmail(), request.getUsernameOrEmail()).orElseThrow(()
-                        -> new RuntimeException("User not found")
-                );
+    @PostMapping("/login")
+    public ApiResponse<AuthResponseDTO> login(@RequestBody LoginRequestDTO request) {
 
-        if (!user.getPassword().equals(request.getPassword())) {
-            throw new RuntimeException("Invalid password");
+        AuthResponseDTO response = authService.login(request);
+
+        return ApiResponse.<AuthResponseDTO>builder()
+                .success(true)
+                .message("Login Successful")
+                .data(response)
+                .build();
+    }
+
+    @PostMapping("/change-password")
+    public ApiResponse<Object> changePassword(@RequestHeader("Authorization") String token,
+                                              @Valid @RequestBody ChangePasswordRequestDTO request) {
+        if (token == null || !token.startsWith("Bearer ")) {
+            throw new InvalidCredentialsException("Invalid token format");
         }
+        String jwtToken = token.substring(7); // Remove "Bearer " prefix
+
+        authService.changePassword(jwtToken, request);
+
+        return ApiResponse.builder()
+                .success(true)
+                .message("Password changed successfully")
+                .data(null)
+                .build();
     }
 }
